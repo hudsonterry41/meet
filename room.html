@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Main Room</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="page-container">
+    <!-- Main video area -->
+    <div class="video-area">
+      <div class="video-grid" id="video-grid">
+        <!-- Dynamically filled -->
+      </div>
+    </div>
+
+    <!-- Sidebar chat -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h3>Chat</h3>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <p class="message system"><strong>System</strong>: Welcome! Say hello!</p>
+      </div>
+      <div class="chat-input-area">
+        <div class="chat-input-row">
+          <input type="text" id="message-input" placeholder="Type a message..." />
+          <input type="file" id="image-upload" accept="image/*" style="display: none;" />
+          <button id="send-message" class="btn-small">Send</button>
+          <button id="upload-image-btn" class="btn-small">🖼️</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls bar -->
+    <div class="controls-bar">
+      <div class="controls-left">
+        <button id="toggle-mic" class="btn-icon">🎤</button>
+        <button id="toggle-camera" class="btn-icon">🎥</button>
+      </div>
+      <div class="controls-center">
+        <button id="open-profile" class="btn-small">👤 Name &amp; Avatar</button>
+        <button id="open-background" class="btn-small">🖼️ Background</button>
+        <button id="open-voice" class="btn-small">🔊 Voice</button>
+      </div>
+      <div class="controls-right">
+        <span id="user-display">User</span>
+      </div>
+    </div>
+
+    <!-- Profile modal -->
+    <div id="profile-modal" class="modal hidden">
+      <div class="modal-content">
+        <h4>Profile</h4>
+        <div class="modal-body">
+          <label>Name:<br />
+            <input type="text" id="profile-name" placeholder="Your name" />
+          </label>
+          <label>Avatar URL (optional):<br />
+            <input type="url" id="profile-avatar" placeholder="https://..." />
+          </label>
+        </div>
+        <div class="modal-footer">
+          <button id="save-profile" class="btn">Save</button>
+          <button id="close-profile" class="btn btn-secondary">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Background modal -->
+    <div id="background-modal" class="modal hidden">
+      <div class="modal-content">
+        <h4>Virtual Background</h4>
+        <div class="modal-body">
+          <p>Upload an image or video for your background.</p>
+          <label>Image background:<br />
+            <input type="file" id="bg-image-upload" accept="image/*" />
+          </label>
+          <label>Video background (optional):<br />
+            <input type="file" id="bg-video-upload" accept="video/*" />
+          </label>
+          <div class="bg-preview">
+            <img id="bg-image-preview" src="assets/default-avatar.png" alt="Preview" style="max-width: 200px;" />
+            <video id="bg-video-preview" controls style="max-width: 200px; display: none;"></video>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="save-background" class="btn">Save</button>
+          <button id="close-background" class="btn btn-secondary">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Voice modal -->
+    <div id="voice-modal" class="modal hidden">
+      <div class="modal-content">
+        <h4>Voice Mode</h4>
+        <div class="modal-body voice-mode-options">
+          <label><input type="radio" name="voice-mode" value="normal" checked /> Normal</label>
+          <label><input type="radio" name="voice-mode" value="low" /> Low Voice</label>
+          <label><input type="radio" name="voice-mode" value="high" /> High Voice</label>
+          <label><input type="radio" name="voice-mode" value="robot" /> Robotic</label>
+        </div>
+        <div class="modal-footer">
+          <button id="save-voice" class="btn">Save</button>
+          <button id="close-voice" class="btn btn-secondary">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/virtual-background.js"></script>
+  <script src="js/webrtc-client.js"></script>
+</body>
+</html>
